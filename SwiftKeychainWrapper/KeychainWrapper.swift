@@ -50,6 +50,9 @@ open class KeychainWrapper {
     /// Default keychain wrapper access
     public static let standard = KeychainWrapper()
     
+    /// For access of an keychain item, defaultItemAccessibility is used if no accessibility passed to a getter / setter.
+    public var defaultItemAccessibility:KeychainItemAccessibility = .whenUnlocked
+    
     /// ServiceName is used for the kSecAttrService property to uniquely identify this keychain accessor. If no service name is specified, KeychainWrapper will default to using the bundleIdentifier.
     private (set) public var serviceName: String
     
@@ -315,7 +318,7 @@ open class KeychainWrapper {
             keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
         } else {
             // Assign default protection - Protect the keychain entry so it's only valid when the device is unlocked
-            keychainQueryDictionary[SecAttrAccessible] = KeychainItemAccessibility.whenUnlocked.keychainAttrValue
+            keychainQueryDictionary[SecAttrAccessible] = defaultItemAccessibility
         }
         
         let status: OSStatus = SecItemAdd(keychainQueryDictionary as CFDictionary, nil)
