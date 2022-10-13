@@ -452,11 +452,11 @@ open class KeychainWrapper {
         // Uniquely identify the account who will be accessing the keychain
         let encodedIdentifier: Data? = key.data(using: String.Encoding.utf8)
         
-        keychainQueryDictionary[SecAttrGeneric] = key
+        //keychainQueryDictionary[SecAttrGeneric] = encodedIdentifier
         
-        keychainQueryDictionary[SecAttrAccount] = key
+        keychainQueryDictionary[SecAttrAccount] = encodedIdentifier
         
-        keychainQueryDictionary[SecAttrSynchronizable] = isSynchronizable ? kCFBooleanTrue : kCFBooleanFalse
+        //keychainQueryDictionary[SecAttrSynchronizable] = isSynchronizable ? kCFBooleanTrue : kCFBooleanFalse
         
         return keychainQueryDictionary
     }
