@@ -318,7 +318,7 @@ open class KeychainWrapper {
             keychainQueryDictionary[SecAttrAccessible] = accessibility.keychainAttrValue
         } else {
             // Assign default protection - Protect the keychain entry so it's only valid when the device is unlocked
-            keychainQueryDictionary[SecAttrAccessible] = defaultItemAccessibility
+            keychainQueryDictionary[SecAttrAccessible] = defaultItemAccessibility.keychainAttrValue
         }
         
         let status: OSStatus = SecItemAdd(keychainQueryDictionary as CFDictionary, nil)
