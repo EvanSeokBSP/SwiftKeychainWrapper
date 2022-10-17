@@ -434,7 +434,7 @@ open class KeychainWrapper {
     /// - returns: A dictionary with all the needed properties setup to access the keychain on iOS
     private func setupKeychainQueryDictionary(forKey key: String, withAccessibility accessibility: KeychainItemAccessibility? = nil, isSynchronizable: Bool = false) -> [String:Any] {
         // Setup default access as generic password (rather than a certificate, internet password, etc)
-        var keychainQueryDictionary: [String:Any] = [SecClass:kSecClassGenericPassword]
+        var keychainQueryDictionary: [String:Any] = [SecClass:String(kSecClassGenericPassword)]
         
         // Uniquely identify this keychain accessor
         keychainQueryDictionary[SecAttrService] = serviceName
@@ -450,11 +450,11 @@ open class KeychainWrapper {
         }
         
         // Uniquely identify the account who will be accessing the keychain
-        let encodedIdentifier: Data? = key.data(using: String.Encoding.utf8)
+        //let encodedIdentifier: Data? = key.data(using: String.Encoding.utf8)
         
-        keychainQueryDictionary[SecAttrGeneric] = encodedIdentifier
+        keychainQueryDictionary[SecAttrGeneric] = key
         
-        keychainQueryDictionary[SecAttrAccount] = encodedIdentifier
+        keychainQueryDictionary[SecAttrAccount] = key
         
         keychainQueryDictionary[SecAttrSynchronizable] = isSynchronizable ? kCFBooleanTrue : kCFBooleanFalse
         
