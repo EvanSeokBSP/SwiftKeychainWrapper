@@ -28,18 +28,18 @@
 import Foundation
 
 
-private let SecMatchLimit: String! = kSecMatchLimit as String
-private let SecReturnData: String! = kSecReturnData as String
-private let SecReturnPersistentRef: String! = kSecReturnPersistentRef as String
-private let SecValueData: String! = kSecValueData as String
-private let SecAttrAccessible: String! = kSecAttrAccessible as String
-private let SecClass: String! = kSecClass as String
-private let SecAttrService: String! = kSecAttrService as String
-private let SecAttrGeneric: String! = kSecAttrGeneric as String
-private let SecAttrAccount: String! = kSecAttrAccount as String
-private let SecAttrAccessGroup: String! = kSecAttrAccessGroup as String
-private let SecReturnAttributes: String = kSecReturnAttributes as String
-private let SecAttrSynchronizable: String = kSecAttrSynchronizable as String
+private let SecMatchLimit: String = String(kSecMatchLimit)
+private let SecReturnData: String = String(kSecReturnData)
+private let SecReturnPersistentRef: String = String(kSecReturnPersistentRef)
+private let SecValueData: String = String(kSecValueData)
+private let SecAttrAccessible: String = String(kSecAttrAccessible)
+private let SecClass: String = String(kSecClass)
+private let SecAttrService: String = String(kSecAttrService)
+private let SecAttrGeneric: String = String(kSecAttrGeneric)
+private let SecAttrAccount: String = String(kSecAttrAccount)
+private let SecAttrAccessGroup: String = String(kSecAttrAccessGroup)
+private let SecReturnAttributes: String = String(kSecReturnAttributes)
+private let SecAttrSynchronizable: String = String(kSecAttrSynchronizable)
 
 /// KeychainWrapper is a class to help make Keychain access in Swift more straightforward. It is designed to make accessing the Keychain services more like using NSUserDefaults, which is much more familiar to people.
 open class KeychainWrapper {
@@ -452,7 +452,7 @@ open class KeychainWrapper {
         // Uniquely identify the account who will be accessing the keychain
         let encodedIdentifier: Data? = key.data(using: String.Encoding.utf8)
         
-        //keychainQueryDictionary[SecAttrGeneric] = encodedIdentifier
+        keychainQueryDictionary[SecAttrGeneric] = encodedIdentifier
         
         keychainQueryDictionary[SecAttrAccount] = encodedIdentifier
         
